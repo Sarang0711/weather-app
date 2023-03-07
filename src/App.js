@@ -1,4 +1,6 @@
 import React,{useState, useEffect} from "react";
+// import {'dotenv.config()'}
+// require('dotenv').config();
 
 const App = () => {
   const [weather, setWeather] = useState({
@@ -10,7 +12,7 @@ const App = () => {
   let icon;
   useEffect(()=> {
     const fetchApi = async() => {
-      const API_KEY = "88608d1d4cd10a45130946268ca36b0b";
+      const API_KEY = process.env.REACT_APP_API_KEY;
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=${API_KEY}`;
       const response = await fetch(url);
       // console.log(response)
