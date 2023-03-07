@@ -8,6 +8,10 @@ const App = () => {
       });
   const [search, setSearch] = useState('Pune');
   let icon;
+  function handleChange(e) {
+    setSearch(e.target.value);
+    // console.log(e.target.value);
+  }
   useEffect(()=> {
     const fetchApi = async() => {
       const API_KEY = "88608d1d4cd10a45130946268ca36b0b";
@@ -23,7 +27,6 @@ const App = () => {
       }
         );
 
-      // ? useEffect is called when it observes some changes in the search. onClick and useEffect cannot be used at same time
     }
 
     fetchApi();
@@ -32,15 +35,20 @@ const App = () => {
   return(
     <div className="main">
       <div>
-        <input 
-          type="search"
-          name="search"
-          id = "search"
-          spellCheck = {false}
-          onChange={(event) => {
-            setSearch(event.target.value);
-          }} 
-        />
+        <form>
+          <input type="text" 
+            value={search}
+            onChange = {handleChange}
+          />
+          <button 
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            // console.log(search);
+            setSearch(search);
+          }}
+          >Search</button>
+        </form>
       </div>
             {!weather ? <h2>Not Found</h2> : (
               <div className="info">
