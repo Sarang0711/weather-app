@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from "react";
-// import {'dotenv.config()'}
-// require('dotenv').config();
+
 
 const App = () => {
   const [weather, setWeather] = useState({
@@ -9,7 +8,6 @@ const App = () => {
       description: ''
       });
   const [search, setSearch] = useState('Pune');
-  let icon;
   useEffect(()=> {
     const fetchApi = async() => {
       const API_KEY = process.env.REACT_APP_API_KEY;
@@ -49,7 +47,7 @@ const App = () => {
                 <p>Location: {search}</p>
                 <div className="img-weather">
                 <p>Weather: {weather.description}</p>
-                <img src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`} />
+                <img alt="weather icon" src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`} />
                 </div>
                 <p>Temperature: {weather.city.temp}</p>
                 <p>Min-temp: {weather.city.temp_min}</p>
